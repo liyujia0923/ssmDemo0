@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.ssm4.dao.ScoreMapper4">
+    <resultMap id="gradeMap" type="Grade4">
+        <id property="id" column="gr_id"/>
+        <result property="gradeName" column="grade_name"/>
+    </resultMap>
+    <resultMap id="studentMap" type="Student4">
+        <id property="id" column="st_id"/>
+        <result property="studentName" column="student_name"/>
+        <association property="grade4" resultMap="gradeMap"/>
+    </resultMap>
+    <resultMap id="courseMap" type="Course4">
+        <id property="id" column="co_id"/>
+        <result property="courseName" column="course_name"/>
+    </resultMap>
+    <resultMap id="scoreMap" type="Score4">
+        <id property="id" column="sc_id"/>
+        <result property="score" column="score"/>
+        <association property="student4" resultMap="studentMap"/>
+        <association property="course4" resultMap="courseMap"/>
+    </resultMap>
+    <select id="queryAll" resultMap="scoreMap">
+        SELECT
+        sc.`id` AS sc_id, sc.`score`,
+        co.`id` AS co_id,co.`course_name`,
+        st.`id` AS st_id,st.`student_name`,
+        gr.`id` AS gr_id,gr.`grade_name`
+        FROM `score` sc,
+        `course` co,
+        `student` st,
+        `grade` gr
+        WHERE
+        sc.`student_id` = st.`id`
+        AND
+        sc.`course_id` = co.`id`
+        AND
+        st.`grade_id` = gr.`id`
+        ORDER BY sc.`id` DESC
+    </select>
+    <select id="queryScore" resultMap="scoreMap">
+         SELECT
+        sc.`id` AS sc_id, sc.`score`,
+        co.`id` AS co_id,co.`course_name`,
+        st.`id` AS st_id,st.`student_name`,
+        gr.`id` AS gr_id,gr.`grade_name`
+        FROM `score` sc,
+        `course` co,
+        `student` st,
+        `grade` gr
+        WHERE
+        sc.`student_id` = st.`id`
+        AND
+        sc.`course_id` = co.`id`
+        AND
+        st.`grade_id` = gr.`id`
+        <if test="gradeId!=null">
+            and gr.id=#{gradeId}
+        </if>
+        <if test="studentId!=null">
+            and st.id = #{studentId}
+        </if>
+        ORDER BY sc.`id` DESC
+    </select>
+</mapper>

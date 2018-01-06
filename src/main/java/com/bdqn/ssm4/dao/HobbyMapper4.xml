@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.ssm4.dao.HobbyMapper4">
+    <resultMap id="hobbyMap" type="Hobby4">
+        <id property="id" column="id"/>
+        <result property="hobbyName" column="hobby_name"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    <select id="queryAll" resultMap="hobbyMap" >
+        SELECT * FROM `hobby` ORDER BY `create_time` DESC
+    </select>
+    <insert id="addHobby" parameterType="Hobby4">
+        INSERT INTO `hobby`
+        VALUES (NULL,
+                #{hobbyName},
+                 NOW());
+    </insert>
+    <delete id="deleteHobby" parameterType="Integer">
+        DELETE
+        FROM
+          `hobby`
+        WHERE `id` = #{id}
+    </delete>
+    <delete id="deleteHobbyList" >
+        DELETE
+        FROM
+          `hobby`
+        WHERE `id` IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="queryHobby" parameterType="Integer" resultMap="hobbyMap">
+             SELECT * FROM `hobby` WHERE id = #{id}
+    </select>
+    <update id="updateHobby" parameterType="Hobby4">
+       UPDATE `hobby`
+        SET
+          `hobby_name` = #{hobbyName}
+        WHERE `id` = #{id}
+    </update>
+</mapper>
