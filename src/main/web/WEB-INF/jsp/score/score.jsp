@@ -18,6 +18,7 @@
                 rownumbers:true,
                 pagination:true,
                 striped:true,
+                checkOnSelect:false,
                 toolbar:[
                     {
                         text:'添加',
@@ -30,7 +31,6 @@
                         text:'删除',
                         iconCls:'icon-remove',
                         handler:function () {
-                            alert("删除");
                         }
                     }
                 ],
@@ -94,13 +94,13 @@
             })
         })
         function queryScoreById(id) {
-            alert(id);
+
         }
         function updateScore(id) {
             alert(id);
         }
         function deleteScore(id) {
-            alert(id);
+
         }
     </script>
 </head>
