@@ -31,4 +31,19 @@ public class ScoreServiceImpl implements ScoreService {
         PageInfo<Score4> pageInfo = new PageInfo<>(list);
         return pageInfo;
     }
+
+    @Override
+    public Integer deleteScoreById(Integer id) {
+        return scoreMapper4.deleteScoreById(id);
+    }
+
+    @Override
+    public Integer deleteScoreByIds(List<Integer> list) {
+        return scoreMapper4.deleteScoreByIds(list);
+    }
+
+    @Override
+    public Score4 queryScoreById(Integer id) {
+        return scoreMapper4.queryScoreById(id);
+    }
 }

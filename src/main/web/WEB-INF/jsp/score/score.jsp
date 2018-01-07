@@ -113,5 +113,26 @@
         </form>
     </div>
     <table id="scoreDataGrid"></table>
+    <%--详情--%>
+    <div class="easyui-window" id="queryScoreByIdWindow"
+         style="top: 30%; left: 30%; width: 500px; height: 300px; padding:60px 120px;"
+         title="成绩详情" closed="true">
+        <form id="queryScoreByIdForm">
+            <div>
+                班级：<input class="easyui-textbox" id="queryGradeName"/>
+            </div>
+            <div>
+                学生：<input class="easyui-textbox" id="queryStudentName"/>
+            </div>
+            <div>
+                课程：<input class="easyui-textbox" id="queryCourseName"/>
+            </div>
+            <div>
+                成绩：<input class="easyui-textbox" id="queryScore"/>
+            </div>
+
+
+        </form>
+    </div>
 </body>
 </html>
